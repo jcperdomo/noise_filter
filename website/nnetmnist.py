@@ -5,9 +5,13 @@ model from: https://www.tensorflow.org/get_started/mnist/pros
 
 when executed as:
 $ python nnetmnist.py
-runs some usage examples
+this script runs some usage examples
+
+$ python nnetmnist.py --train
+will train the full model on 20,000 epochs, acheiving >99% accuracy
 """
 
+import argparse
 import numpy as np
 from tensorflow.examples.tutorials.mnist import input_data
 import tensorflow as tf
@@ -195,22 +199,30 @@ class NNetMnist:
 
 
 if __name__ == "__main__":
-	nn = NNetMnist()
-	# model is saved by default
-	nn.fit(epochs=101)
-	# this one is retrained from scratch
-	nn.fit(epochs=101, force_retrain=True)
-	# previous model is loaded by default , so this improves on previous parameters
-	nn.fit(epochs=101)
-	# skip_if_trained sets a flag that tells future calls to fit to not do any work, unless force_retrain is set
-	nn.fit(epochs=201, skip_if_trained=True, force_retrain=True)
-	# this one will not do any work
+	parser = argparse.ArgumentParser()
+	parser.add_argument("-t", "--train", help="train model for 20,000 epochs and overwrite previous")
+	args = parser.parse_args()
 
-	nn.fit(epochs=201, skip_if_trained=True)
+	if args.train:
+		nn = NNetMnist()
+		nn.fit(skip_if_trained=True, force_retrain=True, verbose=False)
+	else:
+		nn = NNetMnist()
+		# model is saved by default
+		nn.fit(epochs=101)
+		# this one is retrained from scratch
+		nn.fit(epochs=101, force_retrain=True)
+		# previous model is loaded by default , so this improves on previous parameters
+		nn.fit(epochs=101)
+		# skip_if_trained sets a flag that tells future calls to fit to not do any work, unless force_retrain is set
+		nn.fit(epochs=201, skip_if_trained=True, force_retrain=True)
+		# this one will not do any work
 
-	# predictions are returned as probability distribution vectors
-	p = nn.predict(mnist.test.images)
-	print(np.sum(p, axis=1))
-	# gradients with respect to input
-	g = nn.gradients(mnist.test.images, mnist.test.labels)
-	print(g)
+		nn.fit(epochs=201, skip_if_trained=True)
+
+		# predictions are returned as probability distribution vectors
+		p = nn.predict(mnist.test.images)
+		print(np.sum(p, axis=1))
+		# gradients with respect to input
+		g = nn.gradients(mnist.test.images, mnist.test.labels)
+		print(g)
