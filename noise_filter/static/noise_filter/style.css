@@ -1,3 +1,5 @@
-body {
-    background: white url("images/jordan.jpg") no-repeat right bottom;
+#btnSearch,
+#btnClear{
+    display: inline-block;
+    vertical-align: top;
 }

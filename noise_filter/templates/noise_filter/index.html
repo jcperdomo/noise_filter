@@ -1,18 +1,32 @@
-<!DOCTYPE html>
-
 {% load static %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'noise_filter/css/bootstrap.css' %}" />
+<link rel="stylesheet" href="{% static 'noise_filter/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" href="{% static 'noise_filter/style.css' %}" />
+
 
 <html>
-<head>
-<title>Noise Filter Home Page</title>
-</head>
-<body>
+    <head>
+        <title>Noise Filter Home Page</title>
+    </head>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-<button type="button">Click Me!</button>
+<body>
+<div class="jumbotron text-center">
+
+  <h1>Deep Learning Noise Filter</h1>
+  <p>Proof of Concept of Fast Gradient Method</p>
+</div>
+
+
+<div class="container-fluid">
+  <div class="row">
+        <div class="col-md-12 text-center">
+    		<button type="button" class="btn btn-warning custom-button-width ">Get Random Image</button>
+			<button type="button" class="btn btn-danger custom-button-width ">Add Noise</button>
+            <button type="button" class="btn btn-primary custom-button-width ">Classify</button>
+    	</div>
+  </div>
+</div>
+
 
 </body>
 </html>
