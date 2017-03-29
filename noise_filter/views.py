@@ -47,7 +47,8 @@ def add_noise(im, image_id, epsilon=0.07):
     y = np.zeros((1, NUM_LABELS), dtype=np.float32)
     y[0, label] = 1
     grad = nn.gradient(im.reshape((1, len(im))), y)
-    return im + epsilon * np.sign(grad)
+    noise_vector = grad / np.linalg.norm(grad)
+    return im + epsilon * noise_vector
 
 
 def get_random_image(request):

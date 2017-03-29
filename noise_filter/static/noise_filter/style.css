@@ -1,5 +1,25 @@
+.jumbotron {
+    padding: 0.5em 0.6em;
+    margin: 0px;
+    h1 {
+        font-size: 2em;
+    }
+    p {
+        font-size: 1.2em;
+        .btn {
+            padding: 0.5em;
+        }
+    }
+}
+
 #btnSearch,
 #btnClear{
     display: inline-block;
     vertical-align: top;
+}
+
+#image-prediction {
+	text-align: center;
+	margin: auto;
+	min-height: 40px;
 }
