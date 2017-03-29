@@ -128,3 +128,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 #STATIC_ROOT = os.path.join(PROJECT_DIR, 'static')
+
+import sys
+RUNNING_DEVSERVER = (len(sys.argv) > 1 and sys.argv[1] == 'runserver')

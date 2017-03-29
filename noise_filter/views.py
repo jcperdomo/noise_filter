@@ -6,6 +6,7 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 from matplotlib.dates import DateFormatter
 from .models import Images
+from django.conf import settings
 
 IMAGE_SIZE = 28
 NUM_LABELS = 10
@@ -19,19 +20,24 @@ from .nnetmnist import NNetMnist
 
 checkpoint_path = "checkpoint"
 nn = NNetMnist(dirname=checkpoint_path)
-nn.fit(epochs=40, skip_if_trained=True, verbose=True)
+nb_epochs = 40
+# train on server if available
+if settings.RUNNING_DEVSERVER:
+    nb_epochs = 4000
+nn.fit(epochs=nb_epochs, skip_if_trained=True, verbose=True)
 
 def index(request):
     return render(request, 'noise_filter/index.html', {})
 
 def get_db_image(image_id):
     try:
-        return Images.objects.filter(id=image_id)[0].get_array()
+        res = Images.objects.filter(id=image_id)[0]
+        return res.get_array(), int(res.label)
     except:
         return None
 
 def get_image_array(version, image_id, display=False):
-    im = get_db_image(image_id)
+    im, true_label = get_db_image(image_id)
     if im is None:
         return None
 
@@ -40,9 +46,9 @@ def get_image_array(version, image_id, display=False):
 
     if display:
         im = im.reshape(IMAGE_SIZE, IMAGE_SIZE)
-    return im
+    return im, true_label
 
-def add_noise(im, image_id, epsilon=0.07):
+def add_noise(im, image_id, epsilon=1.0):
     label = int(Images.objects.filter(id=image_id)[0].label)
     y = np.zeros((1, NUM_LABELS), dtype=np.float32)
     y[0, label] = 1
@@ -57,7 +63,7 @@ def get_random_image(request):
 
 
 def display_image(request, version, image_id):
-    image_array = get_image_array(version, image_id, display=True)
+    image_array, _ = get_image_array(version, image_id, display=True)
     if image_array is None:
         return HttpResponse("no image with id {}".format(image_id))
     fig = Figure()
@@ -71,15 +77,16 @@ def display_image(request, version, image_id):
 @csrf_exempt
 def predict(request, version, image_id):
     if request.method == "GET":
-        im = get_image_array(version, image_id)
+        im, true_label = get_image_array(version, image_id)
         if im is None:
             return HttpResponse("No image with id {}".format(image_id))
-        im = im.reshape((1, len(im)))
+        im = im.reshape((-1, IMAGE_SIZE*IMAGE_SIZE))
         p = nn.predict(im).tolist()[0]
 
         res = {
             "prediction": p,
-            "label": int(np.argmax(p))
+            "label_predicted": int(np.argmax(p)),
+            "label_true": true_label
         }
 
         return JsonResponse(res)

@@ -3,6 +3,7 @@ function getRandomImage(){
     httpGetAsync('/noise_filter/getRandomImage', function(new_id){
         console.log(new_id);
         $("#disp-image").attr("src", "normal/"+new_id);
+        classify();
     })
 }
 
@@ -11,6 +12,17 @@ function addNoise(){
     var n = info.indexOf("/");
     var image_id = info.substring(n + 1, info.length);
     $("#disp-image").attr("src", "noised/"+image_id);
+    classify();
+}
+
+function classify(){
+    var info = $("#disp-image").attr("src");
+    httpGetAsync('predict/' + info, function(predict_res){
+        var json = JSON.parse(predict_res);
+        var results = "<p>The predicted label is " + json["label_predicted"].toString() + "</p>";
+        results += "<p>The true label is " + json["label_true"].toString() + "</p>";
+        $("#image-prediction").html(results);
+    })
 }
 
 function httpGetAsync(theUrl, callback)
@@ -23,3 +35,7 @@ function httpGetAsync(theUrl, callback)
     xmlHttp.open("GET", theUrl, true); // true for asynchronous
     xmlHttp.send(null);
 }
+
+$(document).ready(function() {
+    classify();
+});
