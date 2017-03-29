@@ -19,7 +19,9 @@
 }
 
 #image-prediction {
-	text-align: center;
-	margin: auto;
 	min-height: 40px;
+}
+
+#control-panel {
+	margin-top: 100px;
 }

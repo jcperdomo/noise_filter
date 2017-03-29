@@ -2,8 +2,8 @@
 
 <link rel="stylesheet" href="{% static 'noise_filter/css/bootstrap.min.css' %}" />
 <link rel="stylesheet" href="{% static 'noise_filter/style.css' %}" />
-<script src="{% static 'noise_filter/requests.js' %}"></script>
 <script src="{% static 'noise_filter/jquery.min.js' %}"></script>
+<script src="{% static 'noise_filter/requests.js' %}"></script>
 
 <html>
     <head>
@@ -16,18 +16,12 @@
             <p>Proof of Concept of Fast Gradient Method</p>
         </div>
         <div class="container">
-            <div class="row"><div class="span8"><img id="disp-image" class="center-block" src="normal/2000" /></div>
-            </div>
-            <div id="image-prediction">
-                blah
-            </div>
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                        <button type="button" class="btn btn-warning custom-button-width " onclick="getRandomImage()">Get Random Image</button>
-                        <button type="button" class="btn btn-danger custom-button-width " onclick="addNoise()" >Add Noise</button>
-                        <button type="button" class="btn btn-primary custom-button-width " onclick="classify()">Classify</button>
-                    </div>
+            <div class="row">
+                <div class="col-md-7"><img id="disp-image" class="center-block" src="normal/4709" /></div>
+                <div id="control-panel" class="col-md-5">
+                    <div id="image-prediction"></div>
+                    <button type="button" class="btn btn-warning custom-button-width " onclick="getRandomImage()">Get Random Image</button>
+                    <button type="button" class="btn btn-danger custom-button-width " onclick="addNoise()" >Add Noise</button>
                 </div>
             </div>
         </div>
