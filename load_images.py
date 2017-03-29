@@ -1,16 +1,20 @@
+import website.wsgi
+from noise_filter.models import Images
+
 import numpy as np
+from tensorflow.examples.tutorials.mnist import input_data
 # import the relevant model
-from noise_filter.models import Image
+try:
+	from cPickle import dumps
+except:
+	from _pickle import dumps
 
-images = np.load('images.npy')
-labels = np.load('labels.npy')
+mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+images = mnist.test.images
+labels = mnist.test.labels
 
-NUM_IMAGES = 10000
-for i in xrange(NUM_IMAGES):
-
-     im = Image(data=images[i].tostring(), label=np.argmax(labels[i]))
-     try:
-         im.save()
-     except:
-         # if the're a problem anywhere, you wanna know about it
-         print "there was a problem with image", i
+NUM_IMAGES = len(labels)
+for i in range(NUM_IMAGES):
+	s = dumps(images[i])
+	im = Images(data=s, label=np.argmax(labels[i]))
+	im.save()
