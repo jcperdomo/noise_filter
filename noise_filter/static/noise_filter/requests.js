@@ -13,6 +13,15 @@ function addNoise(){
     $("#disp-image").attr("src", "noised/"+image_id);
 }
 
+function classify(){
+    var info = $("#disp-image").attr("src");
+    httpGetAsync('noise_filter/predict/' + info, function(predict_res){
+        var json = JSON.parse(predict_res);
+        var results = "The predicted label is " + json.label.toString()
+        $("#image-prediction").attr("text", results);
+    })
+}
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
