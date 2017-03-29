@@ -6,6 +6,13 @@ function getRandomImage(){
     })
 }
 
+function addNoise(){
+    var info = $("#disp-image").attr("src");
+    var n = info.indexOf("/");
+    var image_id = info.substring(n + 1, info.length);
+    $("#disp-image").attr("src", "noised/"+image_id);
+}
+
 function httpGetAsync(theUrl, callback)
 {
     var xmlHttp = new XMLHttpRequest();
