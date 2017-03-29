@@ -8,6 +8,7 @@ from matplotlib.dates import DateFormatter
 from .models import Images
 
 IMAGE_SIZE = 28
+NUM_LABELS = 10
 from IPython import embed
 
 from os.path import join
@@ -35,17 +36,22 @@ def get_image_array(version, image_id, display=False):
         return None
 
     if version == "noised":
-        #TODO: get noised version
-        pass
+        im = add_noise(im, image_id)
 
     if display:
         im = im.reshape(IMAGE_SIZE, IMAGE_SIZE)
     return im
 
+def add_noise(im, image_id, epsilon=0.07):
+    label = int(Images.objects.filter(id=image_id)[0].label)
+    y = np.zeros((1, NUM_LABELS), dtype=np.float32)
+    y[0, label] = 1
+    grad = nn.gradient(im.reshape((1, len(im))), y)
+    return im + epsilon * np.sign(grad)
+
+
 def get_random_image(request):
-    # TODO : CHECK FOR IDS RANGE Amazon
     image_id = np.random.choice(list(Images.objects.all().values_list('id', flat=True)))
-    # im = Images.objects.filter(id=image_id)[0].get_array().reshape(IMAGE_SIZE, IMAGE_SIZE)
     return HttpResponse(str(image_id))
 
 
