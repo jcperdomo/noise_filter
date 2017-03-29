@@ -81,12 +81,13 @@ def predict(request, version, image_id):
         if im is None:
             return HttpResponse("No image with id {}".format(image_id))
         im = im.reshape((-1, IMAGE_SIZE*IMAGE_SIZE))
-        p = nn.predict(im).tolist()[0]
+        p = [round(n*100) for n in nn.predict(im).astype(float).tolist()[0]]
 
         res = {
             "prediction": p,
             "label_predicted": int(np.argmax(p)),
-            "label_true": true_label
+            "label_true": true_label,
+            "prediction_args": np.argsort(p)[::-1].tolist()
         }
 
         return JsonResponse(res)

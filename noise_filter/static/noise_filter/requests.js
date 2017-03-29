@@ -21,6 +21,14 @@ function classify(){
         var json = JSON.parse(predict_res);
         var results = "<p>The predicted label is " + json["label_predicted"].toString() + "</p>";
         results += "<p>The true label is " + json["label_true"].toString() + "</p>";
+        var preds = json["prediction"];
+        console.log(preds);
+        var preds_args = json["prediction_args"];
+        var pred_str = "";
+        for (var i=0; i < 3; i+=1) {
+            pred_str += '[' + preds_args[i] + ', ' + Number(preds[preds_args[i]]).toString() + ']; ';
+        }
+        results += "<p>" + pred_str + "</p>";
         $("#image-prediction").html(results);
     })
 }
