@@ -79,7 +79,7 @@ def predict(request, version, image_id):
 
         res = {
             "prediction": p,
-            "label": int(np.argmax(p) + 1)
+            "label": int(np.argmax(p))
         }
 
         return JsonResponse(res)
