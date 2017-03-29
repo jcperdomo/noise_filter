@@ -25,7 +25,7 @@ SECRET_KEY = 'j^d14eo6&vd8r)-y2@10iy+4m9ih#s=j0p*5b9atjuiq%*7oqo'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['adversarialnoisefilter.us-east-1.elasticbeanstalk.com']
 
 REST_FRAMEWORK = {
     # Use Django's standard `django.contrib.auth` permissions,
