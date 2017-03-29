@@ -15,7 +15,7 @@ function addNoise(){
 
 function classify(){
     var info = $("#disp-image").attr("src");
-    httpGetAsync('noise_filter/predict/' + info, function(predict_res){
+    httpGetAsync('predict/' + info, function(predict_res){
         var json = JSON.parse(predict_res);
         var results = "The predicted label is " + json.label.toString()
         $("#image-prediction").attr("text", results);
