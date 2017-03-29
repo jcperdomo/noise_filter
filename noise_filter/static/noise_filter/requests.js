@@ -45,5 +45,6 @@ function httpGetAsync(theUrl, callback)
 }
 
 $(document).ready(function() {
+    getRandomImage();
     classify();
 });

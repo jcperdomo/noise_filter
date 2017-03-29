@@ -34,12 +34,12 @@ def get_db_image(image_id):
         res = Images.objects.filter(id=image_id)[0]
         return res.get_array(), int(res.label)
     except:
-        return None
+        return None, None
 
 def get_image_array(version, image_id, display=False):
     im, true_label = get_db_image(image_id)
     if im is None:
-        return None
+        return None, None
 
     if version == "noised":
         im = add_noise(im, image_id)
