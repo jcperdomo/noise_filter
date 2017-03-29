@@ -22,8 +22,8 @@ checkpoint_path = "checkpoint"
 nn = NNetMnist(dirname=checkpoint_path)
 nb_epochs = 40
 # train on server if available
-if settings.RUNNING_DEVSERVER:
-    nb_epochs = 4000
+if not settings.RUNNING_DEVSERVER:
+    nb_epochs = 2000
 nn.fit(epochs=nb_epochs, skip_if_trained=True, verbose=True)
 
 def index(request):
@@ -48,13 +48,14 @@ def get_image_array(version, image_id, display=False):
         im = im.reshape(IMAGE_SIZE, IMAGE_SIZE)
     return im, true_label
 
-def add_noise(im, image_id, epsilon=1.0):
+def add_noise(im, image_id, epsilon=2.0):
     label = int(Images.objects.filter(id=image_id)[0].label)
     y = np.zeros((1, NUM_LABELS), dtype=np.float32)
     y[0, label] = 1
     grad = nn.gradient(im.reshape((1, len(im))), y)
     noise_vector = grad / np.linalg.norm(grad)
-    return im + epsilon * noise_vector
+    # return im + epsilon * noise_vector
+    return im + 0.07 * np.sign(grad)
 
 
 def get_random_image(request):

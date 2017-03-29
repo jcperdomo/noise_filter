@@ -125,7 +125,9 @@ class NNetMnist:
 			with open(fpath_flag, 'w') as f:
 				pass
 
-		verboseprint = print if verbose else lambda *a, **k: None
+		def verboseprint(s):
+			if verbose:
+				print(s)
 
 		with tf.Session(graph=self.graph) as session:
 			# TODO if there exists a saved model, initialize from there
