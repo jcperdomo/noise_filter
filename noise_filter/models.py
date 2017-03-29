@@ -13,4 +13,4 @@ class Images(models.Model):
     label = models.FloatField()
 
     def get_array(self):
-        return loads(str(self.data))
+        return loads(self.data.encode("latin-1"))
