@@ -1,7 +1,8 @@
 
 function getRandomImage(){
     httpGetAsync('/noise_filter/getRandomImage', function(new_id){
-        $("#disp-image").attr("src", "normal/"+new_id)
+        console.log(new_id);
+        $("#disp-image").attr("src", "normal/"+new_id);
     })
 }
 

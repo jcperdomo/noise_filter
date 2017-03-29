@@ -44,7 +44,7 @@ def get_image_array(version, image_id, display=False):
 
 def get_random_image(request):
     # TODO : CHECK FOR IDS RANGE Amazon
-    image_id = np.random.randint(10000)
+    image_id = np.random.choice(list(Images.objects.all().values_list('id', flat=True)))
     # im = Images.objects.filter(id=image_id)[0].get_array().reshape(IMAGE_SIZE, IMAGE_SIZE)
     return HttpResponse(str(image_id))
 
@@ -62,9 +62,9 @@ def display_image(request, version, image_id):
     return response
 
 @csrf_exempt
-def predict(request, image_id):
+def predict(request, version, image_id):
     if request.method == "GET":
-        im = get_im_vector(image_id)
+        im = get_image_array(version, image_id)
         if im is None:
             return HttpResponse("No image with id {}".format(image_id))
         im = im.reshape((1, len(im)))
