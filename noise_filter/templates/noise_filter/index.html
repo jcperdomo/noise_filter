@@ -2,7 +2,8 @@
 
 <link rel="stylesheet" href="{% static 'noise_filter/css/bootstrap.min.css' %}" />
 <link rel="stylesheet" href="{% static 'noise_filter/style.css' %}" />
-
+<script src="requests.js"></script>
+<script src="jquery.min.js"></script>
 
 <html>
     <head>
@@ -18,14 +19,14 @@
 
 <div class="container">
 <div class="row">
-  <div class="span8"><img class="center-block" src="noise_filter/20003/" /></div>
+  <div class="span8"><img id="disp_image" class="center-block" src="normal/1" /></div>
 </div>
 
 <div class="container-fluid">
   <div class="row">
         <div class="col-md-12 text-center">
-    		<button type="button" class="btn btn-warning custom-button-width ">Get Random Image</button>
-			<button type="button" class="btn btn-danger custom-button-width ">Add Noise</button>
+    		<button type="button" class="btn btn-warning custom-button-width " onclick="getRandomImage()">Get Random Image</button>
+			<button type="button" class="btn btn-danger custom-button-width " >Add Noise</button>
             <button type="button" class="btn btn-primary custom-button-width ">Classify</button>
     	</div>
   </div>
