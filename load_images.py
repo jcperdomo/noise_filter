@@ -1,13 +1,23 @@
-import numpy as np
-# import the relevant model
+import website.wsgi
 from noise_filter.models import Images
-from cPickle import dumps
 
-images = np.load('images.npy')
-labels = np.load('labels.npy')
+import numpy as np
+from tensorflow.examples.tutorials.mnist import input_data
+# import the relevant model
+try:
+	from cPickle import dumps
+except:
+	from _pickle import dumps
 
-NUM_IMAGES = 10000
-for i in xrange(NUM_IMAGES):
-    s = dumps(images[i])
-    im = Image(data=s, label=np.argmax(labels[i]))
-    im.save()
+mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+images = mnist.test.images
+labels = mnist.test.labels
+
+# clear db first
+Images.objects.all().delete()
+
+NUM_IMAGES = len(labels)
+for i in range(NUM_IMAGES):
+	s = dumps(images[i]).decode("latin-1")
+	im = Images(data=s, label=np.argmax(labels[i]))
+	im.save()

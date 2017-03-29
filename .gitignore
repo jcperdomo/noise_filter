@@ -1,5 +1,7 @@
+db.*
 *.sqlite3
 *.pyc
 *.npy
 /noise_filter/migrations
-
+/MNIST_data
+/checkpoint
