@@ -26,9 +26,9 @@ function classify(){
         var preds_args = json["prediction_args"];
         var pred_str = "";
         for (var i=0; i < 3; i+=1) {
-            pred_str += '[' + preds_args[i] + ', ' + Number(preds[preds_args[i]]).toString() + ']; ';
+            pred_str += '[Label ' + preds_args[i] + ', ' + Number(preds[preds_args[i]]).toString() + '%]; ';
         }
-        results += "<p>" + pred_str + "</p>";
+        results += "<p>Label Probabilities:<br>" + pred_str + "</p>";
         $("#image-prediction").html(results);
     })
 }
