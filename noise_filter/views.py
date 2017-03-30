@@ -19,7 +19,8 @@ import numpy as np
 from .nnetmnist import NNetMnist
 
 # checkpoint_path = join(settings.BASE_DIR, "checkpoint")
-checkpoint_path = "/opt/python/current/app/checkpoint"
+# checkpoint_path = "/opt/python/current/app/checkpoint"
+checkpoint_path = ""
 nn = NNetMnist(dirname=checkpoint_path)
 nb_epochs = 40
 # train on server if available
