@@ -30,7 +30,8 @@ class NNetMnist:
 	"""
 	def __init__(self, fname="mnistmodel", dirname="tmp"):
 		self.graph = tf.Graph()
-		fpath=join('.', dirname, fname)
+		# fpath=join('.', dirname, fname)
+		fpath=join(dirname, fname)
 		self.fname = fname
 		self.dirname = dirname
 		self.fpath = fpath
