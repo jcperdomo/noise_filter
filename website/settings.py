@@ -22,12 +22,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'j^d14eo6&vd8r)-y2@10iy+4m9ih#s=j0p*5b9atjuiq%*7oqo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [
-'adversarialnoisefilter.us-east-1.elasticbeanstalk.com', 
-'.elasticbeanstalk.com', 
-'localhost', 
+'adversarialnoisefilter.us-east-1.elasticbeanstalk.com',
+'.elasticbeanstalk.com',
+'localhost',
 '127.0.0.1'
 ]
 # ALLOWED_HOSTS = ['*']
