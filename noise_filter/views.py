@@ -18,7 +18,8 @@ import numpy as np
 # TODO this will uncompress mnist every time a request comes in, very messy
 from .nnetmnist import NNetMnist
 
-checkpoint_path = join(settings.BASE_DIR, "checkpoint")
+# checkpoint_path = join(settings.BASE_DIR, "checkpoint")
+checkpoint_path = "/opt/python/current/app/checkpoint"
 nn = NNetMnist(dirname=checkpoint_path)
 nb_epochs = 40
 # train on server if available
