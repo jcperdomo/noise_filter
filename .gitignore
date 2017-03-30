@@ -4,7 +4,6 @@ db.*
 *.npy
 /noise_filter/migrations
 /MNIST_data
-/checkpoint
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
