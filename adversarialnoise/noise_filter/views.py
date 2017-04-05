@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render_to_response
+from django.template.context import RequestContext
 from django.http import HttpResponse
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -26,7 +27,7 @@ nb_epochs = 2000 if settings.DEBUG else 20
 nn.fit(epochs=nb_epochs, skip_if_trained=True, verbose=True)
 
 def index(request):
-    return render(request, 'noise_filter/index.html', {})
+    return render_to_response("index.html", context_instance=RequestContext(request))
 
 def get_db_image(image_id):
     try:
