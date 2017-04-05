@@ -25,7 +25,11 @@ SECRET_KEY = 'o_4h&m4n#r6gnclo*kugak2tx(2g^^#f9v6*v^h79$53)nhuzt'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # True if 'python manage.py runserver'
-DEBUG = (sys.argv[1] == 'runserver')
+DEBUG = True
+try:
+    DEBUG = (sys.argv[1] == 'runserver')
+except:
+    pass
 
 ALLOWED_HOSTS = [
     ".herokuapp.com",
