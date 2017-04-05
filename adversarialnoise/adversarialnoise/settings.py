@@ -129,6 +129,5 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 # TODO do the tensorflow checkpoint and mnist data need to be static?
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'noise_filter', 'static'),
-)
+# STATICFILES_DIRS = (
+# )
