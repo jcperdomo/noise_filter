@@ -28,6 +28,7 @@ SECRET_KEY = 'o_4h&m4n#r6gnclo*kugak2tx(2g^^#f9v6*v^h79$53)nhuzt'
 DEBUG = (sys.argv[1] == 'runserver')
 
 ALLOWED_HOSTS = [
+    ".herokuapp.com",
     ".elasticbeanstalk.com",
     "localhost",
 ]
