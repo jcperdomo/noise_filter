@@ -13,7 +13,7 @@ will train the full model on 20,000 epochs, acheiving >99% accuracy
 
 import argparse
 import numpy as np
-from tensorflow.examples.tutorials.mnist import input_data
+# from tensorflow.examples.tutorials.mnist import input_data
 import tensorflow as tf
 from os.path import join, isfile, exists, abspath
 from os import remove, makedirs
@@ -21,7 +21,7 @@ import errno
 
 # from IPython import embed
 
-mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
+# mnist = input_data.read_data_sets('MNIST_data', one_hot=True)
 
 # TODO could have better organization using tf.variable_scope()
 # see https://danijar.com/structuring-your-tensorflow-models/
