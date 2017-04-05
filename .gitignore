@@ -2,11 +2,13 @@ db.*
 *.sqlite3
 *.pyc
 *.npy
-/noise_filter/migrations
-/MNIST_data
+**/migrations
+**/MNIST_data
+**/__pycache__
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 temp.*
-/env
+env/
+venv/
