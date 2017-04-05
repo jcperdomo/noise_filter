@@ -1,2 +1,2 @@
-model_checkpoint_path: "C:\\Users\\scheng\\Documents\\Harvard\\4 Senior\\Thesis\\adversarialnoise\\checkpoint\\mnistmodel"
-all_model_checkpoint_paths: "C:\\Users\\scheng\\Documents\\Harvard\\4 Senior\\Thesis\\adversarialnoise\\checkpoint\\mnistmodel"
+model_checkpoint_path: "C:\\Users\\scheng\\Documents\\Harvard\\4 Senior\\Thesis\\noise_filter\\adversarialnoise\\checkpoint\\mnistmodel"
+all_model_checkpoint_paths: "C:\\Users\\scheng\\Documents\\Harvard\\4 Senior\\Thesis\\noise_filter\\adversarialnoise\\checkpoint\\mnistmodel"

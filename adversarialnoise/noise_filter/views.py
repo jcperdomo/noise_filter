@@ -22,10 +22,7 @@ from .nnetmnist import NNetMnist
 # checkpoint_path = "/opt/python/current/app/checkpoint"
 checkpoint_path = join(settings.BASE_DIR, "checkpoint")
 nn = NNetMnist(fdir=checkpoint_path)
-nb_epochs = 40
-# train on server if available
-# if not settings.RUNNING_DEVSERVER:
-#     nb_epochs = 2000
+nb_epochs = 2000 if settings.DEBUG else 20
 nn.fit(epochs=nb_epochs, skip_if_trained=True, verbose=True)
 
 def index(request):
